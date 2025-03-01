@@ -24,11 +24,12 @@ def total_salary(path):
     return (sum(money_list), sum(money_list) / len(money_list))
 
 
-fname = "./in/salary_file.txt"
-if os.path.isfile(fname):
-    total, average = total_salary(fname)
-    print(
-        f"Загальна сума заробітної плати: {total:.2f}, Середня заробітна плата: {average:.2f}"
-    )
-else:
-    print(f"File '{fname}' not found...")
+if __name__ == "__main__":
+    fname = "./in/salary_file.txt"
+    if os.path.isfile(fname):
+        total, average = total_salary(fname)
+        print(
+            f"Загальна сума заробітної плати: {total:.2f}, Середня заробітна плата: {average:.2f}"
+        )
+    else:
+        print(f"File '{fname}' not found...")

@@ -25,9 +25,10 @@ def get_cats_info(path):
     return result
 
 
-fname = "./in/cats_file.txt"
-if os.path.isfile(fname):
-    cats_info = get_cats_info(fname)
-    print(cats_info)
-else:
-    print(f"File '{fname}' not found...")
+if __name__ == "__main__":
+    fname = "./in/cats_file.txt"
+    if os.path.isfile(fname):
+        cats_info = get_cats_info(fname)
+        print(cats_info)
+    else:
+        print(f"File '{fname}' not found...")
