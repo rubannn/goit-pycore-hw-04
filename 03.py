@@ -27,7 +27,7 @@ GREEN = Fore.GREEN
 
 def dir_tree(dir_path: Path, depth=1):
     items = list(dir_path.iterdir())  # all childrens in dir
-    
+
     for item in items:
         indent = "\t" * depth  # calc indents
         if item.is_dir():
@@ -49,6 +49,3 @@ if __name__ == "__main__":
 
     print(BLUE + dir_path.as_posix() + "/")
     dir_tree(dir_path)
-
-
-# python 03.py 'd:\AP\'
