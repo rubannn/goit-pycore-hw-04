@@ -15,3 +15,41 @@
 - Повинна бути перевірка та обробка помилок, наприклад, якщо вказаний шлях
 не існує або він не веде до директорії.
 """
+
+import sys
+from pathlib import Path
+from colorama import init, Fore
+
+init(autoreset=True)
+BLUE = Fore.BLUE
+GREEN = Fore.GREEN
+
+
+def dir_tree(dir_path: Path, depth=1):
+    items = list(dir_path.iterdir())  # all childrens in dir
+    # items.sort(key=lambda x: (not x.is_dir(), x.name))
+
+    for item in items:
+        indent = "\t" * depth  # calc indents
+        if item.is_dir():
+            print(BLUE + f"{indent}{item.name}/")  # print folder +  `/`
+            dir_tree(item, depth + 1)  # recursion call
+        else:
+            print(GREEN + f"{indent}{item.name}")  # print files
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Use: python 03.py <dir_path>")
+        sys.exit(1)
+
+    dir_path = Path(sys.argv[1]).resolve()  # absolute path
+    if not dir_path.is_dir():
+        print("Path is not directory...")
+        sys.exit(1)
+
+    print(BLUE + dir_path.as_posix() + "/")
+    dir_tree(dir_path)
+
+
+# python 03.py 'd:\AP\'
