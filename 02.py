@@ -12,3 +12,22 @@
 Ваше завдання - розробити функцію get_cats_info(path), яка читає
 цей файл та повертає список словників з інформацією про кожного кота.
 """
+
+import os
+
+
+def get_cats_info(path):
+    result = []
+    with open(path, mode="r", encoding="utf-8") as file:
+        for line in file.readlines():
+            id, name, age = line.strip().split(",")
+            result.append({"id": id, "name": name, "age": age})
+    return result
+
+
+fname = "./in/cats_file.txt"
+if os.path.isfile(fname):
+    cats_info = get_cats_info(fname)
+    print(cats_info)
+else:
+    print(f"File '{fname}' not found...")
