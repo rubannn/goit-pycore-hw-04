@@ -27,12 +27,11 @@ GREEN = Fore.GREEN
 
 def dir_tree(dir_path: Path, depth=1):
     items = list(dir_path.iterdir())  # all childrens in dir
-    # items.sort(key=lambda x: (not x.is_dir(), x.name))
-
+    
     for item in items:
         indent = "\t" * depth  # calc indents
         if item.is_dir():
-            print(BLUE + f"{indent}{item.name}/")  # print folder +  `/`
+            print(BLUE + f"{indent}{item.name}/")  # print folders +  `/`
             dir_tree(item, depth + 1)  # recursion call
         else:
             print(GREEN + f"{indent}{item.name}")  # print files
