@@ -9,31 +9,37 @@
 
 
 def parse_input(user_input):
+    """Розбирає введений користувачем рядок на команду та аргументи."""
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, *args
 
 
 def add_contact(args, contacts):
+    """Додає новий контакт."""
     name, phone = args
     contacts[name] = phone
     return "Contact added."
 
 
 def change_contact(args, contacts):
+    """Змінює телефон існуючого контакту."""
     name, phone = args
     contacts[name] = phone
     return "Contact changed."
 
 
 def show_phone(args, contacts):
-    name, = args
-    return contacts[name]
+    """Показує телефон контакту."""
+    name = args[0]
+    return f"{name}: {contacts[name]}"
 
 
 def show_all(contacts):
-    for name in contacts.keys():
-        print(f"{name}: {contacts[name]}")
+    """Виводить усі контакти."""
+    if not contacts:
+        return "No contacts saved."
+    return "\n".join(f"{name}: {phone}" for name, phone in contacts.items())
 
 
 def main():
@@ -55,7 +61,7 @@ def main():
         elif command == "phone":
             print(show_phone(args, contacts))
         elif command == "all":
-            show_all(contacts)
+            print(show_all(contacts))
         else:
             print("Invalid command.")
 
